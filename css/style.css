@@ -160,48 +160,19 @@
   .sap-icon{
     position:relative;
     display:block;
-    width:28px;
-    height:28px;
+    width:42px;
+    height:30px;
     margin-bottom:10px;
-    transform:rotate(-18deg);
+    transform:rotate(-8deg);
   }
-  .sap-icon::before,
-  .sap-icon::after,
-  .sap-icon span::before,
-  .sap-icon span::after{
-    content:"";
-    position:absolute;
-    background:var(--sage-light);
-    border:2px solid rgba(255,255,255,.72);
-    box-shadow:0 2px 6px rgba(0,0,0,.18);
-  }
-  .sap-icon::before{
-    width:14px;
-    height:11px;
-    left:1px;
-    top:8px;
-    border-radius:80% 55% 70% 55%;
-  }
-  .sap-icon::after{
-    width:15px;
-    height:12px;
-    right:1px;
-    top:6px;
-    border-radius:55% 80% 55% 70%;
-  }
-  .sap-icon span::before{
-    width:10px;
-    height:8px;
-    left:7px;
-    bottom:3px;
-    border-radius:75% 45% 70% 45%;
-  }
-  .sap-icon span::after{
-    width:8px;
-    height:7px;
-    right:7px;
-    bottom:4px;
-    border-radius:45% 75% 45% 70%;
+  .sap-icon svg{display:block;width:100%;height:100%;overflow:visible;}
+  .sap-icon path{
+    fill:rgba(199,204,122,.22);
+    stroke:var(--sage-light);
+    stroke-width:5;
+    stroke-linejoin:round;
+    stroke-linecap:round;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.22));
   }
   .sap-title{
     display:block;
@@ -525,7 +496,7 @@
     }
     .sap-badge::after{border-width:0 0 34px 156px;}
     .sap-badge:hover,.sap-badge:focus-visible{transform:rotate(-4deg) scale(1.03);}
-    .sap-icon{width:22px;height:22px;font-size:18px;margin-bottom:8px;}
+    .sap-icon{width:34px;height:24px;margin-bottom:8px;}
     .sap-title{font-size:16px;margin-bottom:12px;}
     .sap-line{font-size:13px;}
     .sap-badge strong{font-size:14.5px;}
