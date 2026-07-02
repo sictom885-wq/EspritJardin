@@ -68,6 +68,62 @@ document.querySelectorAll('.filter-btn[href^="#"]').forEach(link => {
   });
 });
 
+const showroomItems = document.querySelectorAll('.showroom-bento .bento-item');
+
+if (showroomItems.length) {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'photo-lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Photo agrandie du showroom');
+  lightbox.innerHTML = `
+    <button type="button" class="photo-lightbox-close" aria-label="Fermer la photo agrandie">×</button>
+    <img src="" alt="">
+  `;
+  document.body.appendChild(lightbox);
+
+  const lightboxImg = lightbox.querySelector('img');
+  const closeButton = lightbox.querySelector('.photo-lightbox-close');
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('is-open');
+    document.body.classList.remove('lightbox-open');
+    lightboxImg.removeAttribute('src');
+  };
+
+  const openLightbox = (item) => {
+    const image = item.querySelector('img');
+    if (!image) return;
+    lightboxImg.src = image.currentSrc || image.src;
+    lightboxImg.alt = image.alt;
+    lightbox.classList.add('is-open');
+    document.body.classList.add('lightbox-open');
+    closeButton.focus();
+  };
+
+  showroomItems.forEach((item) => {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.setAttribute('aria-label', `Agrandir : ${item.querySelector('img')?.alt || 'photo du showroom'}`);
+
+    item.addEventListener('click', () => openLightbox(item));
+    item.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(item);
+      }
+    });
+  });
+
+  closeButton.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+  });
+}
+
 // Affichage du message d'erreur formulaire (retour contact.php)
 if (window.location.search.includes('erreur=1')) {
   const err = document.getElementById('form-error');
