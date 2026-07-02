@@ -459,6 +459,36 @@
   .footer-grid h4{color:var(--white);font-size:13px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;font-weight:600;}
   .footer-grid ul{list-style:none;}
   .footer-grid li{margin-bottom:10px;font-size:13.5px;}
+  .facebook-tile{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:6px;
+    padding:9px 12px;
+    color:var(--white);
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:8px;
+    transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease);
+  }
+  .facebook-tile:hover,.facebook-tile:focus-visible{
+    background:rgba(255,255,255,.1);
+    border-color:var(--sage-light);
+    transform:translateY(-1px);
+  }
+  .facebook-mark{
+    width:22px;
+    height:22px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#1877f2;
+    color:#fff;
+    font-weight:700;
+    font-family:Arial,sans-serif;
+    line-height:1;
+  }
   .footer-brand .logo-img{height:64px;}
   .footer-brand .logo::before{display:none;}
   .footer-brand .logo{padding:0;}
