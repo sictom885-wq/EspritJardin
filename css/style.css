@@ -370,6 +370,15 @@
   .zone-content p{color:var(--ink-soft);font-size:14.5px;margin-bottom:28px;max-width:440px;}
   .zone-list{columns:2;gap:24px;list-style:none;font-size:14px;}
   .zone-list li{padding:6px 0;color:var(--ink-soft);}
+  .local-seo-panel{
+    margin-top:32px;
+    padding:24px 26px;
+    background:rgba(255,255,255,.58);
+    border:1px solid rgba(28,30,25,.08);
+    border-radius:8px;
+  }
+  .local-seo-panel h3{font-size:18px;font-weight:500;margin-bottom:10px;}
+  .local-seo-panel p{font-size:14px;color:var(--ink-soft);line-height:1.75;margin:0;max-width:none;}
   .zone-map{aspect-ratio:480/620;background:transparent;border:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:0;border-radius:16px;box-shadow:0 30px 60px -20px rgba(28,30,25,.35);}
   .zone-satellite{width:100%;height:100%;position:relative;}
   .zone-satellite .maplibregl-ctrl-attrib{font-size:10px;background:rgba(255,255,255,.6);}
@@ -503,6 +512,7 @@
     .sap-badge strong{font-size:14.5px;}
     .avis-grid{grid-template-columns:1fr;}
     .zone-grid{grid-template-columns:1fr;}
+    .local-seo-panel{padding:22px;margin-top:26px;}
     .footer-grid{grid-template-columns:1fr 1fr;}
   }
   @media(prefers-reduced-motion:reduce){
