@@ -82,6 +82,10 @@
     padding:8px 0;
     box-shadow:0 4px 24px rgba(0,0,0,.15);
   }
+  header.nav-open{
+    background:rgba(43,46,21,0.96);
+    backdrop-filter:blur(14px);
+  }
   .nav-wrap{display:flex;align-items:center;justify-content:space-between;}
   .logo{
     display:flex;align-items:center;gap:10px;
@@ -102,6 +106,7 @@
   nav a{color:var(--white);font-size:13px;letter-spacing:0.04em;font-weight:500;}
   .nav-cta{display:flex;align-items:center;gap:24px;}
   .burger{display:none;background:none;border:0;color:var(--white);font-size:24px;cursor:pointer;}
+  .burger:focus-visible{outline:2px solid var(--gold);outline-offset:6px;}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -234,13 +239,44 @@
   .sat-pin-hq .sat-pin-tip{background:var(--magenta-deep);font-weight:700;}
 
   @media(max-width:640px){
+    .container{padding:0 28px;}
+    header{padding:4px 0;}
+    header nav.is-open{top:88px;left:18px;right:18px;}
+    .logo{padding:10px 18px;}
+    .logo-img{height:96px;}
+    header.scrolled .logo-img{height:62px;}
+    .hero{
+      min-height:760px;
+      flex-direction:column;
+      justify-content:flex-end;
+      align-items:stretch;
+      padding-bottom:38px;
+    }
+    .hero h1{font-size:42px;}
+    .hero p{font-size:15.5px;margin-bottom:26px;}
+    .hero-actions{display:grid;gap:12px;margin-bottom:0;}
+    .hero-actions .btn{justify-content:center;width:100%;}
+    .hero-badge{
+      position:relative;
+      right:auto;
+      bottom:auto;
+      margin:18px 28px 0;
+      text-align:left;
+    }
+    .hero-badge p{font-size:12.5px;}
+    .intro,.savoir,.real,.avis,.zone{padding:78px 0;}
+    .intro-head{margin-bottom:42px;}
+    .filter-bar{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:10px;margin-bottom:22px;}
+    .filter-btn{flex:0 0 auto;}
+    .detail{padding:58px 0;}
+    .cta-final{padding:82px 0;scroll-margin-top:88px;}
     .zone-map{border-radius:10px;}
     .sat-pin-tip{display:none;}
   }
 
 
   /* ---------- CTA FINAL ---------- */
-  .cta-final{padding:110px 0;background:var(--forest-deep);color:var(--white);text-align:center;}
+  .cta-final{padding:110px 0;background:var(--forest-deep);color:var(--white);text-align:center;scroll-margin-top:96px;}
   .cta-final .eyebrow{color:var(--gold);}
   .cta-final h2{font-size:clamp(28px,4vw,48px);font-weight:300;max-width:640px;margin:0 auto 36px;}
   .cta-final h2 em{font-style:italic;color:var(--sage-light);}
@@ -263,6 +299,19 @@
 
   @media(max-width:960px){
     nav, .nav-cta .btn-primary{display:none;}
+    header nav.is-open{
+      position:fixed;
+      top:92px;
+      left:24px;
+      right:24px;
+      display:block;
+      padding:22px;
+      background:rgba(43,46,21,.98);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 22px 54px rgba(0,0,0,.28);
+    }
+    header nav.is-open ul{display:grid;gap:18px;}
+    header nav.is-open a{display:block;font-size:15px;}
     .burger{display:block;}
     .triptych{grid-template-columns:1fr;}
     .sf-grid{grid-template-columns:repeat(2,1fr);}
@@ -359,18 +408,33 @@
 
 /* ---------- COOKIE BANNER ---------- */
 .cookie-banner{
-  position:fixed;left:20px;right:20px;bottom:-120px;z-index:200;
-  max-width:720px;margin:0 auto;
+  position:fixed;right:20px;bottom:-180px;z-index:200;
+  max-width:520px;margin:0;
   background:var(--forest-deep);color:rgba(255,255,255,.85);
-  padding:20px 24px;border-radius:10px;
+  padding:18px 20px;border-radius:10px;
   display:flex;align-items:center;gap:20px;flex-wrap:wrap;
   box-shadow:0 20px 50px rgba(0,0,0,.35);
   transition:bottom .5s var(--ease);
 }
 .cookie-banner.show{bottom:20px;}
-.cookie-banner p{font-size:13px;line-height:1.6;flex:1;min-width:240px;margin:0;}
+.cookie-banner p{font-size:12.5px;line-height:1.55;flex:1;min-width:240px;margin:0;}
 .cookie-banner a{color:var(--gold);text-decoration:underline;}
 .cookie-banner-btn{flex-shrink:0;padding:10px 22px;font-size:13px;}
 @media(max-width:600px){
-  .cookie-banner{left:12px;right:12px;padding:16px 18px;}
+  .cookie-banner{left:12px;right:12px;max-width:none;padding:14px 16px;}
+  .cookie-banner p{font-size:12px;min-width:0;}
+  .cookie-banner-btn{width:100%;justify-content:center;}
+}
+
+@media(max-width:640px){
+  .page-hero{min-height:300px;padding-bottom:42px;}
+  .filter-bar{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    gap:8px;
+    margin-bottom:12px;
+    padding:0 0 10px;
+    scrollbar-width:thin;
+  }
+  .filter-btn{flex:0 0 auto;}
 }

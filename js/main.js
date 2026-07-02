@@ -5,10 +5,57 @@ if (header) {
   }, {passive:true});
 }
 
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('header nav');
+
+if (burger && nav) {
+  burger.setAttribute('type', 'button');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Ouvrir le menu');
+
+  const closeMenu = () => {
+    nav.classList.remove('is-open');
+    header?.classList.remove('nav-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Ouvrir le menu');
+  };
+
+  burger.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('is-open');
+    header?.classList.toggle('nav-open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+    burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+}
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
 }, {threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+document.querySelectorAll('a[href^="#"], a[href*="index.html#"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (link.classList.contains('filter-btn')) return;
+
+    const url = new URL(link.href, window.location.href);
+    if (url.pathname !== window.location.pathname || !url.hash) return;
+
+    const target = document.querySelector(url.hash);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.pushState(null, '', url.hash);
+  });
+});
 
 // Défilement doux vers les ancres de thème (page réalisations)
 document.querySelectorAll('.filter-btn[href^="#"]').forEach(link => {
