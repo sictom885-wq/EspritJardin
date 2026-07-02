@@ -193,19 +193,69 @@
   .tag-row span{font-size:12.5px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:8px;}
   .tag-row span::before{content:"";width:5px;height:5px;background:var(--gold);border-radius:50%;}
   .showroom-bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:104px;gap:12px;}
-  .bento-item{position:relative;overflow:hidden;margin:0;background:rgba(255,255,255,.08);cursor:zoom-in;}
+  .photo-zoom,
+  .bento-item{
+    position:relative;
+    overflow:hidden;
+    cursor:zoom-in;
+    transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+  }
+  .photo-zoom::before,
+  .bento-item::before{
+    content:"+";
+    position:absolute;
+    right:14px;
+    top:14px;
+    z-index:2;
+    width:34px;
+    height:34px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.35);
+    background:rgba(43,46,21,.62);
+    color:var(--white);
+    font-size:24px;
+    line-height:1;
+    opacity:0;
+    transform:translateY(6px) scale(.92);
+    transition:opacity .3s var(--ease),transform .3s var(--ease);
+  }
+  .photo-zoom::after,
   .bento-item::after{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(180deg,rgba(43,46,21,0) 35%,rgba(43,46,21,.38) 100%);
+    background:linear-gradient(180deg,rgba(43,46,21,.05) 0%,rgba(43,46,21,.48) 100%);
     opacity:0;
     transition:opacity .35s var(--ease);
   }
-  .bento-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .8s var(--ease);}
-  .bento-item:hover img,.bento-item:focus-visible img{transform:scale(1.1);filter:saturate(1.08);}
-  .bento-item:hover::after,.bento-item:focus-visible::after{opacity:1;}
+  .photo-zoom img,
+  .bento-item img{transition:transform .8s var(--ease),filter .8s var(--ease);}
+  .photo-zoom:hover,
+  .photo-zoom:focus-visible,
+  .bento-item:hover,
+  .bento-item:focus-visible{transform:translateY(-5px) scale(1.018);box-shadow:0 22px 42px rgba(0,0,0,.32);}
+  .photo-zoom:hover img,
+  .photo-zoom:focus-visible img,
+  .bento-item:hover img,
+  .bento-item:focus-visible img{transform:scale(1.16);filter:saturate(1.12) contrast(1.04);}
+  .photo-zoom:hover::before,
+  .photo-zoom:focus-visible::before,
+  .bento-item:hover::before,
+  .bento-item:focus-visible::before{opacity:1;transform:translateY(0) scale(1);}
+  .photo-zoom:hover::after,
+  .photo-zoom:focus-visible::after,
+  .bento-item:hover::after,
+  .bento-item:focus-visible::after{opacity:1;}
+  .photo-zoom:focus-visible,
   .bento-item:focus-visible{outline:2px solid var(--gold);outline-offset:4px;}
+  .bento-item{margin:0;background:rgba(255,255,255,.08);}
+  .sf-card.photo-zoom::after,
+  .sf-card.photo-zoom:hover::after,
+  .sf-card.photo-zoom:focus-visible::after{
+    opacity:1;
+    background:linear-gradient(180deg,rgba(43,46,21,0) 40%,rgba(43,46,21,.88) 100%);
+  }
   .bento-large{grid-column:span 3;grid-row:span 3;}
   .bento-tall{grid-column:span 3;grid-row:span 2;}
   .bento-wide{grid-column:span 4;grid-row:span 2;}
@@ -407,9 +457,9 @@
 /* ---------- GALLERY ---------- */
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 .gallery-grid.wide{grid-template-columns:repeat(4,1fr);}
-.gallery-item{aspect-ratio:4/3;overflow:hidden;cursor:pointer;position:relative;}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
-.gallery-item:hover img{transform:scale(1.06);}
+.gallery-item{aspect-ratio:4/3;overflow:hidden;cursor:zoom-in;position:relative;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .8s var(--ease);}
+.gallery-item:hover img,.gallery-item:focus-visible img{transform:scale(1.16);filter:saturate(1.12) contrast(1.04);}
 
 /* ---------- SF INDEX CARDS ---------- */
 .sf-index-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
@@ -421,6 +471,10 @@
 .sf-index-card-body{padding:22px 24px;}
 .sf-index-card-body h3{font-size:17px;font-weight:500;margin-bottom:6px;}
 .sf-index-card-body span{font-size:12.5px;color:var(--ink-soft);}
+.gallery-item.photo-zoom:hover img,
+.gallery-item.photo-zoom:focus-visible img,
+.sf-index-card .photo-zoom:hover img,
+.sf-index-card .photo-zoom:focus-visible img{transform:scale(1.16);filter:saturate(1.12) contrast(1.04);}
 
 /* ---------- EXPERTISE CARDS ---------- */
 .expertise-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}

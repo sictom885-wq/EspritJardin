@@ -68,14 +68,21 @@ document.querySelectorAll('.filter-btn[href^="#"]').forEach(link => {
   });
 });
 
-const showroomItems = document.querySelectorAll('.showroom-bento .bento-item');
+const photoItems = document.querySelectorAll([
+  '.showroom-bento .bento-item',
+  '.gallery-item',
+  '.real-card .img-wrap',
+  '.sf-card',
+  '.sf-index-card .img-wrap',
+  '.pourquoi-img'
+].join(','));
 
-if (showroomItems.length) {
+if (photoItems.length) {
   const lightbox = document.createElement('div');
   lightbox.className = 'photo-lightbox';
   lightbox.setAttribute('role', 'dialog');
   lightbox.setAttribute('aria-modal', 'true');
-  lightbox.setAttribute('aria-label', 'Photo agrandie du showroom');
+  lightbox.setAttribute('aria-label', 'Photo agrandie');
   lightbox.innerHTML = `
     <button type="button" class="photo-lightbox-close" aria-label="Fermer la photo agrandie">×</button>
     <img src="" alt="">
@@ -101,15 +108,21 @@ if (showroomItems.length) {
     closeButton.focus();
   };
 
-  showroomItems.forEach((item) => {
+  photoItems.forEach((item) => {
+    item.classList.add('photo-zoom');
     item.setAttribute('tabindex', '0');
     item.setAttribute('role', 'button');
-    item.setAttribute('aria-label', `Agrandir : ${item.querySelector('img')?.alt || 'photo du showroom'}`);
+    item.setAttribute('aria-label', `Agrandir : ${item.querySelector('img')?.alt || 'photo'}`);
 
-    item.addEventListener('click', () => openLightbox(item));
+    item.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openLightbox(item);
+    });
     item.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
+        event.stopPropagation();
         openLightbox(item);
       }
     });
