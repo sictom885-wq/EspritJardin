@@ -646,6 +646,45 @@
 .sf-index-card .photo-zoom:focus-visible img{transform:scale(1.16);filter:saturate(1.12) contrast(1.04);}
 
 /* ---------- EXPERTISE CARDS ---------- */
+.sf-page-hero{min-height:46vh;}
+.sf-editorial-head{
+  display:grid;
+  grid-template-columns:minmax(260px,.86fr) minmax(280px,1fr);
+  gap:64px;
+  align-items:end;
+  margin-bottom:72px;
+}
+.sf-editorial-head h2{font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.08;max-width:680px;}
+.sf-editorial-head p{color:var(--ink-soft);font-size:16px;line-height:1.85;max-width:560px;}
+.sf-feature{
+  display:grid;
+  grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);
+  align-items:stretch;
+  margin-bottom:88px;
+  background:var(--forest-deep);
+  color:var(--white);
+  border-radius:8px;
+  overflow:hidden;
+}
+.sf-feature-media{min-height:520px;overflow:hidden;}
+.sf-feature-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease);}
+.sf-feature:hover .sf-feature-media img{transform:scale(1.035);}
+.sf-feature-copy{padding:58px 54px;display:flex;flex-direction:column;justify-content:center;}
+.sf-feature-copy .eyebrow{color:var(--gold);}
+.sf-feature-copy h2{font-size:clamp(28px,3.5vw,42px);font-weight:300;line-height:1.12;margin-bottom:22px;}
+.sf-feature-copy p{color:rgba(255,255,255,.72);font-size:15.5px;line-height:1.8;margin-bottom:34px;}
+.sf-signatures{display:flex;flex-wrap:wrap;gap:10px 16px;}
+.sf-signatures span{
+  color:var(--sage-light);
+  font-family:'Bodoni Moda',serif;
+  font-style:italic;
+  font-size:17px;
+  border-bottom:1px solid rgba(210,221,175,.34);
+  padding-bottom:8px;
+  white-space:nowrap;
+}
+.sf-section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:34px;}
+.sf-section-title h2{font-size:clamp(26px,3.2vw,38px);font-weight:300;line-height:1.16;max-width:740px;}
 .expertise-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
 .expertise-card{
   background:var(--white);
@@ -656,6 +695,23 @@
   flex-direction:column;
 }
 .expertise-card:hover{box-shadow:0 16px 32px rgba(28,30,25,.08);}
+.sf-service-grid{gap:28px;}
+.sf-service-card{
+  padding:0;
+  min-height:0;
+  overflow:hidden;
+  border-radius:8px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+.sf-service-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(126,138,66,.28);
+  box-shadow:0 22px 46px rgba(28,30,25,.11);
+}
+.sf-service-media{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--stone);}
+.sf-service-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease),filter .7s var(--ease);}
+.sf-service-card:hover .sf-service-media img{transform:scale(1.07);filter:saturate(1.08) contrast(1.03);}
+.sf-service-body{padding:28px 30px 30px;display:flex;flex-direction:column;flex:1;}
 .expertise-num{
   font-family:'Bodoni Moda',serif;
   font-style:italic;
@@ -676,6 +732,7 @@
   align-items:center;
   justify-content:space-between;
   gap:28px;
+  border-radius:8px;
 }
 .proof-cta .eyebrow{color:var(--gold);}
 .proof-cta h2{font-size:clamp(24px,3vw,34px);font-weight:300;max-width:620px;}
@@ -692,10 +749,27 @@
   .gallery-grid.editorial{grid-template-columns:repeat(2,1fr);}
   .gallery-grid.editorial .gallery-featured{grid-column:span 2;grid-row:auto;min-height:360px;}
   .sf-index-grid{grid-template-columns:1fr 1fr;}
+  .sf-editorial-head{grid-template-columns:1fr;gap:22px;margin-bottom:48px;}
+  .sf-feature{grid-template-columns:1fr;margin-bottom:62px;}
+  .sf-feature-media{min-height:360px;}
+  .sf-feature-copy{padding:42px 34px;}
+  .sf-section-title{display:block;margin-bottom:28px;}
+  .sf-section-title .eyebrow{margin-bottom:12px;}
   .expertise-grid{grid-template-columns:1fr;}
   .proof-cta{align-items:flex-start;flex-direction:column;}
 }
 @media(max-width:600px){
+  .sf-page-hero{min-height:340px;}
+  .sf-editorial-head h2{font-size:31px;}
+  .sf-editorial-head p{font-size:15px;line-height:1.75;}
+  .sf-feature{border-radius:8px;margin-bottom:48px;}
+  .sf-feature-media{min-height:250px;}
+  .sf-feature-copy{padding:32px 24px;}
+  .sf-signatures{gap:8px 13px;}
+  .sf-signatures span{font-size:15.5px;}
+  .sf-service-grid{gap:20px;}
+  .sf-service-body{padding:24px;}
+  .sf-service-media{aspect-ratio:4/3;}
   .gallery-grid, .gallery-grid.wide{grid-template-columns:1fr 1fr;}
   .gallery-grid.editorial{grid-template-columns:1fr 1fr;gap:12px;}
   .gallery-grid.editorial .gallery-featured{grid-column:span 2;min-height:220px;}
